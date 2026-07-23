@@ -1,0 +1,12 @@
+schemas/gschemas.compiled
+node_modules
+.claude
+.agents
+skills-lock.json
+.env
+node_modules/
+*.compiled
+*.log
+.DS_Store
+*.lock
+*.zip

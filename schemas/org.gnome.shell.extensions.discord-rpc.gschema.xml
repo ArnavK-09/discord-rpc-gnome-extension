@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.discord-rpc" path="/org/gnome/shell/extensions/discord-rpc/">
+    <key name="client-id" type="s">
+      <default>''</default>
+      <summary>Discord application client ID</summary>
+      <description>Application client ID from the Discord Developer Portal. Required to broadcast Rich Presence.</description>
+    </key>
+    <key name="enabled" type="b">
+      <default>false</default>
+      <summary>RPC broadcasting enabled</summary>
+    </key>
+    <key name="activity-type" type="i">
+      <default>0</default>
+      <summary>Activity type</summary>
+      <description>0 Playing, 1 Streaming, 2 Listening, 3 Watching, 4 Custom, 5 Competing.</description>
+    </key>
+    <key name="details" type="s">
+      <default>'On GNOME Shell'</default>
+      <summary>Activity title (details)</summary>
+    </key>
+    <key name="state" type="s">
+      <default>'Desktop'</default>
+      <summary>Activity caption (state)</summary>
+    </key>
+    <key name="large-image" type="s">
+      <default>''</default>
+      <summary>Large image asset key</summary>
+    </key>
+    <key name="large-text" type="s">
+      <default>''</default>
+      <summary>Large image hover text</summary>
+    </key>
+    <key name="small-image" type="s">
+      <default>''</default>
+      <summary>Small image asset key</summary>
+    </key>
+    <key name="small-text" type="s">
+      <default>''</default>
+      <summary>Small image hover text</summary>
+    </key>
+    <key name="show-timestamp" type="b">
+      <default>true</default>
+      <summary>Show elapsed timestamp</summary>
+    </key>
+    <key name="timestamp-start" type="x">
+      <default>0</default>
+      <summary>Activity start time (ms epoch)</summary>
+    </key>
+    <key name="clear-on-disable" type="b">
+      <default>true</default>
+      <summary>Clear presence when disabled</summary>
+      <description>Send a clear-activity command before disconnecting so the presence disappears immediately.</description>
+    </key>
+    <key name="only-show-when-discord-open" type="b">
+      <default>false</default>
+      <summary>Only show the tile when Discord is running</summary>
+      <description>Hide the quick settings tile unless a Discord IPC socket is present.</description>
+    </key>
+  </schema>
+</schemalist>

@@ -1,0 +1,15 @@
+{
+  "name": "discord-rpc-gnome-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discord RPC by ArnavK-09 — GNOME Shell extension",
+  "type": "module",
+  "scripts": {
+    "format": "bun x oxfmt --write .",
+    "format:check": "bun x oxfmt --check .",
+    "lint": "bun x oxlint .",
+    "lint:fix": "bun x oxlint --fix .",
+    "check": "bun run format:check && bun run lint",
+    "schema": "glib-compile-schemas schemas/"
+  }
+}

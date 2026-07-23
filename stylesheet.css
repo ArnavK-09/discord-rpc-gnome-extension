@@ -1,0 +1,50 @@
+.drpc-popup {
+  padding: 4px 10px 12px 10px;
+  spacing: 10px;
+  min-width: 22em;
+}
+.drpc-section {
+  font-weight: 700;
+  font-size: 0.78em;
+  margin: 4px 0 2px 2px;
+}
+.drpc-type-grid {
+  margin-top: 2px;
+}
+.drpc-type-btn {
+  border-radius: 12px;
+  min-height: 3.4em;
+  padding: 8px 4px;
+}
+.drpc-type-btn:checked {
+  background-color: -st-accent-color;
+  color: -st-accent-fg-color;
+}
+.drpc-type-btn:checked:hover {
+  background-color: -st-accent-color;
+}
+.drpc-type-btn:checked .drpc-type-icon {
+  color: -st-accent-fg-color;
+}
+.drpc-type-icon {
+  margin-bottom: 4px;
+  icon-size: 18px;
+}
+.drpc-type-caption {
+  font-size: 0.74em;
+  font-weight: 600;
+}
+.drpc-entry-row {
+  spacing: 4px;
+  margin-top: 2px;
+}
+.drpc-entry {
+  border-radius: 9px;
+  padding: 6px 9px;
+}
+.drpc-action {
+  border-radius: 9px;
+  padding: 6px 10px;
+  font-size: 0.9em;
+  font-weight: 600;
+}
