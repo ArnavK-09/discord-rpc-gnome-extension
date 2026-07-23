@@ -23,6 +23,11 @@
       <default>'Desktop'</default>
       <summary>Activity caption (state)</summary>
     </key>
+    <key name="show-images" type="b">
+      <default>true</default>
+      <summary>Show images</summary>
+      <description>When off, no custom images are sent (Discord shows only the app icon).</description>
+    </key>
     <key name="large-image" type="s">
       <default>''</default>
       <summary>Large image asset key</summary>

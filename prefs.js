@@ -98,10 +98,26 @@ export default class DiscordRpcPrefs extends ExtensionPreferences {
       description:
         "Use an asset key uploaded in the Developer Portal (Art Assets, lowercase) or a direct image URL (https://…).",
     });
-    group.add(this._entry(settings, "large-image", "Large image key"));
-    group.add(this._entry(settings, "large-text", "Large image text"));
-    group.add(this._entry(settings, "small-image", "Small image key"));
-    group.add(this._entry(settings, "small-text", "Small image text"));
+    const showSwitch = new Adw.SwitchRow({
+      title: "Show images",
+      subtitle: "Turn off to send no custom image at all",
+    });
+    settings.bind("show-images", showSwitch, "active", Gio.SettingsBindFlags.DEFAULT);
+    group.add(showSwitch);
+
+    const rows = [
+      this._entry(settings, "large-image", "Large image key"),
+      this._entry(settings, "large-text", "Large image text"),
+      this._entry(settings, "small-image", "Small image key"),
+      this._entry(settings, "small-text", "Small image text"),
+    ];
+    const syncSensitive = () => {
+      const on = settings.get_boolean("show-images");
+      for (const r of rows) r.sensitive = on;
+    };
+    settings.connect("changed::show-images", syncSensitive);
+    syncSensitive();
+    for (const r of rows) group.add(r);
     return group;
   }
 
