@@ -3,8 +3,6 @@
   "name": "Discord RPC by ArnavK-09",
   "description": "Customize and broadcast your Discord Rich Presence straight from GNOME's quick settings — activity type, title, caption, images and more, with advanced options in preferences.",
   "url": "https://github.com/ArnavK-09/discord-rpc-gnome",
-  "version": 1,
   "shell-version": ["48", "49", "50"],
-  "settings-schema": "org.gnome.shell.extensions.discord-rpc",
-  "gettext-domain": "discord-rpc-arnavk09@ArnavK-09"
+  "settings-schema": "org.gnome.shell.extensions.discord-rpc"
 }

@@ -12,8 +12,7 @@ export default class DiscordRpcExtension extends Extension {
     this._gIcon = Gio.icon_new_for_string(
       `${this.path}/icons/hicolor/scalable/actions/discord-rpc-symbolic.svg`,
     );
-    this._ipc = new DiscordIpc();
-    this._controller = new RpcController(this._settings, this._ipc);
+    this._controller = new RpcController(this._settings, new DiscordIpc());
     this._indicator = null;
     const openPrefs = () => this.openPreferences();
     if (quickMenuToggleAvailable()) {
@@ -35,7 +34,6 @@ export default class DiscordRpcExtension extends Extension {
     this._indicator = null;
     this._controller?.destroy();
     this._controller = null;
-    this._ipc = null;
     if (this._gIcon) {
       this._gIcon = null;
     }

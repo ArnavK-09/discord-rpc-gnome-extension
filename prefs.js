@@ -4,12 +4,7 @@ import GLib from "gi://GLib";
 import Gtk from "gi://Gtk";
 import { ExtensionPreferences } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
-const ACTIVITY_OPTIONS = [
-  { label: "Playing", value: 0 },
-  { label: "Listening", value: 2 },
-  { label: "Watching", value: 3 },
-  { label: "Competing", value: 5 },
-];
+import { ACTIVITY_TYPES } from "./lib/config.js";
 
 export default class DiscordRpcPrefs extends ExtensionPreferences {
   fillPreferencesWindow(window) {
@@ -56,7 +51,7 @@ export default class DiscordRpcPrefs extends ExtensionPreferences {
     const group = new Adw.PreferencesGroup({ title: "Presence" });
 
     const model = new Gtk.StringList();
-    for (const opt of ACTIVITY_OPTIONS) model.append(opt.label);
+    for (const t of ACTIVITY_TYPES) model.append(t.label);
     const typeRow = new Adw.ComboRow({
       title: "Activity type",
       subtitle: "How the activity appears on your profile",
@@ -65,11 +60,11 @@ export default class DiscordRpcPrefs extends ExtensionPreferences {
     const current = settings.get_int("activity-type");
     typeRow.selected = Math.max(
       0,
-      ACTIVITY_OPTIONS.findIndex((o) => o.value === current),
+      ACTIVITY_TYPES.findIndex((t) => t.value === current),
     );
     typeRow.connect("notify::selected", () => {
-      const opt = ACTIVITY_OPTIONS[typeRow.selected];
-      if (opt) settings.set_int("activity-type", opt.value);
+      const t = ACTIVITY_TYPES[typeRow.selected];
+      if (t) settings.set_int("activity-type", t.value);
     });
     group.add(typeRow);
 
@@ -115,7 +110,8 @@ export default class DiscordRpcPrefs extends ExtensionPreferences {
       const on = settings.get_boolean("show-images");
       for (const r of rows) r.sensitive = on;
     };
-    settings.connect("changed::show-images", syncSensitive);
+    const syncConn = settings.connect("changed::show-images", syncSensitive);
+    group.connect("destroy", () => settings.disconnect(syncConn));
     syncSensitive();
     for (const r of rows) group.add(r);
     return group;
@@ -166,8 +162,15 @@ export default class DiscordRpcPrefs extends ExtensionPreferences {
     const focus = new Gtk.EventControllerFocus();
     row.add_controller(focus);
     focus.connect("leave", commit);
-    settings.connect(`changed::${key}`, () => {
+    const settingsConn = settings.connect(`changed::${key}`, () => {
       if (settings.get_string(key) !== row.text) row.text = settings.get_string(key) ?? "";
+    });
+    row.connect("destroy", () => {
+      if (timerId) {
+        GLib.source_remove(timerId);
+        timerId = 0;
+      }
+      settings.disconnect(settingsConn);
     });
     return row;
   }
