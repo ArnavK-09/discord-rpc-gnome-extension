@@ -2,7 +2,7 @@
 <h2 align="center">Customize your Discord Rich Presence straight from quick settings</h2>
 
 <p align="center">
-    <img alt="hero" width="450" src="https://emoji-route.deno.dev/png/👾" />
+    <img alt="hero" width="450" src="https://emoji-route.vercel.app/png/👾" />
 </p>
 
 > [!NOTE]
